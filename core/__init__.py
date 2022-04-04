@@ -1,3 +1,4 @@
+from core import routes
 from flask import Flask
 from decouple import config
 from flask_restx import Api
@@ -12,5 +13,3 @@ api = Api(
     doc='/',
     prefix='/api/v1'
 )
-
-from core import routes

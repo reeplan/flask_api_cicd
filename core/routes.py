@@ -26,6 +26,7 @@ parser.add_argument('sign', type=str, required=True)
 parser_copy = parser.copy()
 parser_copy.add_argument('day', type=str, required=True)
 
+
 @ns.route('/get-horoscope/daily')
 class DailyHoroscopeAPI(Resource):
     '''Shows daily horoscope of zodiac signs'''
@@ -48,6 +49,7 @@ class DailyHoroscopeAPI(Resource):
         except ValueError:
             raise BadRequest('Please enter day in correct format: YYYY-MM-DD')
 
+
 @ns.route('/get-horoscope/weekly')
 class WeeklyHoroscopeAPI(Resource):
     '''Shows weekly horoscope of zodiac signs'''
@@ -62,7 +64,10 @@ class WeeklyHoroscopeAPI(Resource):
         except KeyError:
             raise NotFound('No such zodiac sign exists')
         except AttributeError:
-            raise BadRequest('Something went wrong, please check the URL and the arguments.')
+            raise BadRequest(
+                'Something went wrong, please check the URL and the arguments.')
+
+
 @ns.route('/get-horoscope/monthly')
 class MonthlyHoroscopeAPI(Resource):
     '''Shows monthly horoscope of zodiac signs'''
@@ -77,4 +82,5 @@ class MonthlyHoroscopeAPI(Resource):
         except KeyError:
             raise NotFound('No such zodiac sign exists')
         except AttributeError:
-            raise BadRequest('Something went wrong, please check the URL and the arguments.')
+            raise BadRequest(
+                'Something went wrong, please check the URL and the arguments.')
