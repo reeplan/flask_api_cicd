@@ -1,6 +1,10 @@
 from core import api
 from flask import jsonify
 from flask_restx import Resource, reqparse
+from core.utils import get_horoscope_by_day, get_horoscope_by_week, get_horoscope_by_month
+from datetime import datetime
+from werkzeug.exceptions import BadRequest, NotFound
+
 
 ns = api.namespace('/', description='Horoscope APIs')
 
@@ -73,7 +77,7 @@ class MonthlyHoroscopeAPI(Resource):
         try:
             zodiac_num = ZODIAC_SIGNS[zodiac_sign.capitalize()]
             horoscope_data = get_horoscope_by_month(zodiac_num)
-            return jsonify(success=True, data=horoscope_data, status=200)
+            return horoscope_data
         except KeyError:
             raise NotFound('No such zodiac sign exists')
         except AttributeError:

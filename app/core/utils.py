@@ -14,7 +14,6 @@ def get_horoscope_by_week(zodiac_sign: int) -> str():
     res = requests.get(f"https://www.horoscope.com/us/horoscopes/general/horoscope-general-weekly.aspx?sign={zodiac_sign}")
     soup = BeautifulSoup(res.content, 'html.parser')
     data = soup.find('div', attrs={'class': 'main-horoscope'})
-    print(data.p.text)
     return data.p.text
 
 def get_horoscope_by_month(zodiac_sign: int) -> str():
